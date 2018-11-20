@@ -45,13 +45,13 @@ constraint FOREIGN KEY (customer_detail) REFERENCES customer(id)
 );
 
 
-create table order(
+create table customer_order(
 order_id 			int AUTO_INCREMENT,
 customer_detail 	int,
 placed_date 		date NOT NULL,
 status 				varchar(255),
 total_amount 		int,
-constraint pk_order PRIMARY KEY (order_id),
+constraint pk_customer_order PRIMARY KEY (order_id),
 constraint FOREIGN KEY (customer_detail) REFERENCES customer(id)
 );
 
@@ -61,18 +61,18 @@ order_detail 		int,
 quantity 			int,
 sub_amount 			int,
 constraint pk_order_item PRIMARY KEY (order_item_id),
-constraint FOREIGN KEY (order_detail) REFERENCES order(order_id)
+constraint FOREIGN KEY (order_detail) REFERENCES custome_order(order_id)
 );
 
 create table feedback(
-feedback_id 		int PRIMARY KEY AUTO_INCREMENT,
-customer_detail 	int,
+feedback_id 		int AUTO_INCREMENT,
+customer_detail 	int not null,
 product_detail 		int,
 description 		varchar(60),
 rating				int(5) NOT NULL,
-images 				varchar((255),
+images 				varchar(255),
 constraint pk_feedback PRIMARY KEY (feedback_id),
-constraint FOREIGN KEY (customer_detail) REFERENCES cutomer(customer_id),
+constraint FOREIGN KEY (customer_detail) REFERENCES customer(id),
 constraint FOREIGN KEY (product_detail) REFERENCES product(product_id) ON DELETE CASCADE
 );
 
