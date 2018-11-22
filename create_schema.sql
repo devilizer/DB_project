@@ -55,14 +55,28 @@ constraint pk_customer_order PRIMARY KEY (order_id),
 constraint FOREIGN KEY (customer_detail) REFERENCES customer(id)
 );
 
+
+create table product(
+
+product_id          int not null auto_increment,
+description varchar(255) not null,
+price       int not null,
+images      varchar(255),
+constraint pk_product_id primary key(product_id)
+);
+
 create table order_item(
 order_item_id 		int AUTO_INCREMENT,
 order_detail 		int,
 quantity 			int,
 sub_amount 			int,
+product_detail      int,
 constraint pk_order_item PRIMARY KEY (order_item_id),
-constraint FOREIGN KEY (order_detail) REFERENCES custome_order(order_id)
+constraint foreign key (product_detail) references product(product_id),
+constraint FOREIGN KEY (order_detail) REFERENCES customer_order(order_id)
 );
+
+
 
 create table feedback(
 feedback_id 		int AUTO_INCREMENT,
@@ -75,6 +89,8 @@ constraint pk_feedback PRIMARY KEY (feedback_id),
 constraint FOREIGN KEY (customer_detail) REFERENCES customer(id),
 constraint FOREIGN KEY (product_detail) REFERENCES product(product_id) ON DELETE CASCADE
 );
+
+
 
 create table vendor(
 vendor_id 			int AUTO_INCREMENT,
@@ -92,3 +108,19 @@ constraint pk_vendor_product PRIMARY KEY (vendor_product_id),
 constraint FOREIGN KEY (product_detail) REFERENCES product(product_id),
 constraint FOREIGN KEY (vendor_detail) REFERENCES vendor(vendor_id)
 );
+
+
+create table cart_item(
+cart_item_id 		int AUTO_INCREMENT,
+cart_detail 		int,
+quantity 			int,
+sub_amount 			int,
+product_detail      int,
+constraint pk_cart_item PRIMARY KEY (cart_item_id),
+constraint FOREIGN KEY (cart_detail) REFERENCES cart(id),
+constraint foreign key (product_detail) references product(product_id)
+);
+
+
+
+
