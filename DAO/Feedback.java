@@ -1,6 +1,7 @@
 import java.lang.*;
 
-public class Feedback(){
+public class Feedback
+{
 	int feedback_id;
 	int customer_detail;
 	int product_detail;

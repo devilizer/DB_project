@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
@@ -66,6 +67,49 @@ public class ProductDAO_JDBC implements ProductDAO {
  			System.out.println(e.getMessage());
  		}
 	}
+	@Override
+	public void setofferforproduct(Product p){
+		String sql;
+		Statement stmt= null;
+		PreparedStatement preparedStatement = null;
+		try{
+			stmt = dbConnection.createStatement();
+			sql = "update product set price = ? where product_id = ?";
+			preparedStatement = dbConnection.prepareStatement(sql);
+			preparedStatement.setInt(1, (int)(0.6*p.getPrice()));
+			preparedStatement.setInt(2, p.getId());
+			preparedStatement.executeUpdate();
+			System.out.println(preparedStatement);
+		}
+		catch (SQLException ex) {
+		    // handle any errors
+		    System.out.println("SQLException: " + ex.getMessage());
+		    System.out.println("SQLState: " + ex.getSQLState());
+		    System.out.println("VendorError: " + ex.getErrorCode());
+		}
+		// Add exception handling when there is no matching record
+	}
+	public void updateprice(Product product,int newprice){
+		String sql;
+		Statement stmt= null;
+		PreparedStatement preparedStatement = null;
+		try{
+			stmt = dbConnection.createStatement();
+			sql = "update product set price = ? where product_id = ?";
+			preparedStatement = dbConnection.prepareStatement(sql);
+			preparedStatement.setInt(1, newprice);
+			preparedStatement.setInt(2, product.getId());
+			preparedStatement.executeUpdate();
+			System.out.println("new Price set to "+ newprice);
+		}
+		catch (SQLException ex) {
+		    // handle any errors
+		    System.out.println("SQLException: " + ex.getMessage());
+		    System.out.println("SQLState: " + ex.getSQLState());
+		    System.out.println("VendorError: " + ex.getErrorCode());
+		}
+	}
+	
 
 }
 

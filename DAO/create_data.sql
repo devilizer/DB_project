@@ -16,7 +16,13 @@ insert into product(description,price,images) values("TrackPants","700","http://
 
 insert into cart_item(cart_detail,quantity,sub_amount,product_detail) values(1,0,0,1);
 insert into cart_item(cart_detail,quantity,sub_amount,product_detail) values(2,1,400,2);
-insert into cart_item(cart_detail,quantity,sub_amount,product_detail) values(3,2,600,3);	
+insert into cart_item(cart_detail,quantity,sub_amount,product_detail) values(3,2,600,3);
+
+insert into customer_order(customer_detail,placed_date,status,total_amount) values(1,"2018-03-20","dispached",638);
+insert into customer_order(customer_detail,placed_date,status,total_amount) values(3,"2018-08-01","delivered",1020);
+insert into customer_order(customer_detail,placed_date,status,total_amount) values(2,"2018-09-18","order placed",238);
+insert into customer_order(customer_detail,placed_date,status,total_amount) values(1,"2018-01-05","order placed",5602);
+insert into customer_order(customer_detail,placed_date,status,total_amount) values(1,"2018-11-21","out for delivery",869);
 
 
 

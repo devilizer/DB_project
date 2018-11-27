@@ -24,7 +24,7 @@ public class Customer{
 
 	public int getid(){return id;}
 	public String get_username(){return username;}
-	public Stirng get_email(){return email;}
+	public String get_email(){return email;}
 	public String get_address(){return address;}
 	public int get_cart_id(){return cart_id;}
 	public void set_username(String u){username = u;}

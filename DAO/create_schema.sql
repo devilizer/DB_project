@@ -1,4 +1,3 @@
-
 drop database eshopping;
 create database eshopping;
 use  eshopping;

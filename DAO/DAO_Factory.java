@@ -14,12 +14,14 @@ public class DAO_Factory{
 	// In the following string, you are connecting a adatabase named "daoproject"
 	static final String DB_URL = "jdbc:mysql://localhost/eshopping";
 	static final String USER = "root";
-	static final String PASS = "123456";
+	static final String PASS = "1997";
 
 	Connection dbconnection = null;
 
 	// You can add additional DAOs here as needed. Generally one DAO per class
 	ProductDAO productDAO = null;
+	Cart_itemDAO cart_itemDAO = null;
+	OrderDAO orderDAO = null;
 
 	boolean activeConnection = false;
 
@@ -58,6 +60,24 @@ public class DAO_Factory{
 			productDAO = new ProductDAO_JDBC( dbconnection );
 
 		return productDAO;
+	}
+	public Cart_itemDAO getCart_itemDAO() throws Exception
+	{
+		if( activeConnection == false )
+			throw new Exception("Connection not activated...");
+
+		if( cart_itemDAO == null )
+			cart_itemDAO = new Cart_itemDAO_JDBC( dbconnection );
+		return cart_itemDAO;
+	}
+	public OrderDAO getOrderDAO() throws Exception
+	{
+		if( activeConnection == false )
+			throw new Exception("Connection not activated...");
+
+		if( orderDAO == null )
+			orderDAO = new OrderDAO_JDBC( dbconnection );
+		return orderDAO;
 	}
 	public void deactivateConnection()
 	{
