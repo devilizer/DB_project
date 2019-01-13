@@ -11,7 +11,7 @@ public class OrderDAO_JDBC implements OrderDAO {
 		dbConnection = dbconn;
 	}
 	@Override
-	public void changestatus(Order order,String newstatus){
+	public void changestatus(int id,String newstatus){
 		Order o = new Order();
 		String sql;
 		Statement stmt= null;
@@ -21,7 +21,7 @@ public class OrderDAO_JDBC implements OrderDAO {
 			sql = "update customer_order set status=? where order_id=?";
 			preparedStatement = dbConnection.prepareStatement(sql);
 			preparedStatement.setString(1, newstatus);
-			preparedStatement.setInt(2, order.getId());
+			preparedStatement.setInt(2, id);
 			preparedStatement.executeUpdate();
 			System.out.println("status changed to "+newstatus);
 		}

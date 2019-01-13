@@ -11,7 +11,7 @@ public class Cart_itemDAO_JDBC implements Cart_itemDAO {
 		dbConnection = dbconn;
 	}
 	@Override
-	public void addProduct(Product product,int quantity,Cart cart)
+	public void addProduct(int id,int quantity,Cart cart)
 	{
 		PreparedStatement preparedStatement = null;
 		String sql;
@@ -21,12 +21,11 @@ public class Cart_itemDAO_JDBC implements Cart_itemDAO {
  
 			preparedStatement.setInt(1, cart.getId());
 			preparedStatement.setInt(2, quantity);
-			preparedStatement.setInt(3,product.getPrice()*quantity);
-			preparedStatement.setInt(4,product.getId());
+			preparedStatement.setInt(3,700*quantity);
+			preparedStatement.setInt(4,id);
 
 			preparedStatement.executeUpdate();
-			System.out.println("item " + product.getDescription() 
-				+ " added to the cart_item database");
+			System.out.println("item added to the cart_item database");
  
 
 		}
@@ -42,14 +41,14 @@ public class Cart_itemDAO_JDBC implements Cart_itemDAO {
  		}
 	}
 	@Override
-	public void removeProduct(Cart_item item){
+	public void removeProduct(int id){
 		PreparedStatement preparedStatement = null;
 		String sql;
-		sql = "delete from cart_item where cart_item_id=?";
+		sql = "delete from cart_item where product_detail=?";
 		try{
 			preparedStatement = dbConnection.prepareStatement(sql);
  
-			preparedStatement.setInt(1, item.getId());
+			preparedStatement.setInt(1, id);
 
 			preparedStatement.executeUpdate();
 			System.out.println("item deleted from database");

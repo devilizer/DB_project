@@ -9,9 +9,7 @@ public class Customer{
 	int cart_id;
 
 	public Customer()
-	{
-
-	}
+	{}
 
 	public Customer(int id,String username,String password,String email,String address,int cart_id){
 		this.id = id;
